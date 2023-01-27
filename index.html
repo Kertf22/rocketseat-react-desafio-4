@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .block {
+            width: 560px;
+            min-height: 560px;
+            margin: auto;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+        }
+
+        .block input {
+            width: 50%;
+            height: 50px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <h2>Lista de produtos</h2>
+
+        <select name="" id="lista">
+            <option value="">Produto 1</option>
+            <option value="">Produto 2</option>
+            <option value="">Produto 3</option>
+            <option value="">Produto 4</option>
+            <option value="">Produto 5</option>
+        </select>
+    </div>
+    <div class="block">
+        <h2>Adcionar Tipo de produto</h2>
+
+        <input type="text" id="produto-input" placeholder="Nome do produto">
+        <button id="produto">Adcioanr</button>
+    </div>
+    <div class="block">
+        <h2>Adcionar produto</h2>
+
+        <input type="text" placeholder="Nome do produto">
+        <input type="text" placeholder="Tipo do produto">
+        <button>Adcioanr</button>
+    </div>
+
+
+
+</body>
+
+<script>
+
+    const produtos = [];
+
+    const tipos = [];
+
+    const adcionarProdutos = (nome, tipo) => {
+        produtos.push({
+            nome,
+            tipo
+        })
+    };
+
+    const buttonProduct = document.querySelector('#produto');
+
+    buttonProduct.addEventListener("click", () => {
+        const productElemtn = document.querySelector('#produto-input');
+        tipos.push(productElemtn.value);
+
+        autualizaLista(tipos);
+    })
+
+
+    const autualizaLista = (tipos) => {
+        const lista = document.querySelector('#lista');
+        lista.innerHTML = '';
+        tipos.forEach((produto) => {
+            const li = document.createElement('option');
+
+
+            li.innerHTML = `${produto}`;
+            console.log(li)
+            lista.appendChild(li);
+        })
+    }
+
+</script>
+
+</html>
